@@ -130,6 +130,6 @@ if __name__ == "__main__":
     path = "resources/imgs/luo.jpg"
     path1 = "../resources/imgs/more_face.jpg"
     video_path = "resources/videos/face.mp4"
-    detect_face(img)
+    # detect_face(img)
     # video_detect(video_path)
     recognize(video_path)
