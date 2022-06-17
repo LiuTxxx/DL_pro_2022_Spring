@@ -207,13 +207,14 @@ class MainWindow(QTabWidget):
         process_this_frame = True
         while True:
             ret, frame = self.video_capture.read()
-            frame = utils.rec_frame(frame)
-            frame_height = frame.shape[0]
-            frame_width = frame.shape[1]
-            frame_scale = 500 / frame_height
-            frame_resize = cv2.resize(frame, (int(frame_width * frame_scale), int(frame_height * frame_scale)))
-            cv2.imwrite("UI_images/tmp.jpg", frame_resize)
-            self.DisplayLabel.setPixmap(QPixmap("UI_images/tmp.jpg"))
+            if ret:
+                frame = utils.rec_frame(frame)
+                frame_height = frame.shape[0]
+                frame_width = frame.shape[1]
+                frame_scale = 500 / frame_height
+                frame_resize = cv2.resize(frame, (int(frame_width * frame_scale), int(frame_height * frame_scale)))
+                cv2.imwrite("UI_images/tmp.jpg", frame_resize)
+                self.DisplayLabel.setPixmap(QPixmap("UI_images/tmp.jpg"))
             if cv2.waitKey(25) & self.stopEvent.is_set() == True:
                 self.stopEvent.clear()
                 self.DisplayLabel.clear()
